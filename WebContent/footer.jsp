@@ -1,3 +1,4 @@
 <footer class="container">
-	<p>&copy; WeebMarket</p>
+	<hr>
+	<p>&copy; BookMarket</p>
 </footer>
