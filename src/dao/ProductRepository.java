@@ -37,20 +37,28 @@ public class ProductRepository {
 		listOfProducts.add(tablet);
 	}
 	
-	//상품 목록을 가져오는 메소드
+	//DB에 저장된 모든데이터. 상품 목록을 가져오는 메소드
 	public ArrayList<Product> getAllProducts(){
 		return listOfProducts;
 	}
 	
 	//0122
+	//DB에 저장된 데이터 중 productId가 같은 데이터를 가져오기
+	//반환 타입을 Product클래스 타입으로 설정
 	public Product getProductById(String productId) {
-		Product productById = null;
+		Product productById = null; //Product클래스 타입의 변수를 미리 선언. 빈 변수
 		
+		//DB의 크기만큼 for문을 사용하여 DB 전체의 데이터 중 상품id와 동일한 정보를 찾음
 		for (int i=0; i<listOfProducts.size(); i++) {
 			Product product = listOfProducts.get(i);
+			//product객체가 null이 아니고, product 객체가 가진 상품 id가 null이 아니고
+			//product객체가 가지고 있는 상품id와 매개변수로 받아온 상품id가 모두 동일한지 비교
 			if(product!=null && product.getProductId()!=null && product.getProductId().equals(productId)) {
+				
+				//product객체를 for문외부의  Product클래스타입객체에 대입
 				productById = product;
-				break;
+				
+				break; //for문 빠져나감
 			}
 		}
 		return productById;

@@ -33,6 +33,7 @@
 				<h3><%=product.getPname() %></h3>
 				<p><%=product.getDescription() %></p>
 				<p><%=product.getUnitPrice() %>원</p>
+				<!-- product.jsp파일로 화면이 이동하며, id에 상품아이디가 담겨간다. -->
 				<p> <a href="./product.jsp?id=<%=product.getProductId() %>"
 				class="btn btn-secondary" role="button">상세정보 &raquo;</a>
 			</div>

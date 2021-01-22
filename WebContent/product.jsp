@@ -17,7 +17,16 @@
 		</div>
 	</div>
 	<%
+	/*
+	products.jsp에서 get방식으로
+	request내장 객체에 데이터를 저장하여 전송
+	*/
 	String id = request.getParameter("id");
+	
+	/*
+	매개변수로 입력한 상품id와 동일한 정보가 있을 경우
+	반환함
+	*/
 	Product product = productDAO.getProductById(id);
 	%>
 	<div class = "container">
