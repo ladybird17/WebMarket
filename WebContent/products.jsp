@@ -3,7 +3,9 @@
 <!-- 아래 세줄이 꼭 들어가야함 -->    
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="dto.Product" %>
-<jsp:useBean id="productDAO" class="dao.ProductRepository" scope="session"></jsp:useBean>
+<!-- 기존 자바빈즈 사용부분을 디렉티브 태그 사용 방식으로 변경. -->
+<%-- <jsp:useBean id="productDAO" class="dao.ProductRepository" scope="session"/> --%>
+<%@ page import="dao.ProductRepository" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +22,8 @@
 		</div>
 	</div>
 	<%
-	ArrayList<Product> listOfProducts = productDAO.getAllProducts();
+	ProductRepository dao = ProductRepository.getInstance();
+	ArrayList<Product> listOfProducts = dao.getAllProducts();
 	%>
 	<div class="container">
 		<div class="row" align="center">

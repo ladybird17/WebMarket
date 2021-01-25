@@ -10,6 +10,24 @@ public class ProductRepository {
 	//자바빈즈를 이용하는 상품 데이터 접근 클래스
 	private ArrayList<Product> listOfProducts = new ArrayList<Product>();
 	
+	/* 싱글톤 패턴 사용함
+	싱글톤 : 프로그램상에서 단 하나의 객체만 생성 후
+			모두 공유하여 사용하는 방식
+	싱글톤 사용법 : private 접근제한자를 사용하여 
+			외부에서는 해당 클래스의 객체를 생성못하도록 
+			하고, 내부에서 해당 클래스의 객체를 생성하고 
+			static으로 정적 멤버로 선언한 후
+			getter를 통해서 내부에서 선언된 객체만 공유하여
+			사용하는 방법 */
+	private static ProductRepository instance = new ProductRepository();
+	
+	/*
+	싱글톤 방식으로 생성된 ProductRepository의
+	객체 instance를 공유. static으로 해줘야함 */
+	public static ProductRepository getInstance() {
+		return instance;
+	}
+	
 	public ProductRepository() {
 		Product phone = new Product("P1234","iPhone 6s",800000);
 		phone.setDescription("4.7-inch, 1334X750 Renina HD display, 8-megapixel iSight Camera");
@@ -62,5 +80,13 @@ public class ProductRepository {
 			}
 		}
 		return productById;
+	}
+	
+	/*
+	listOfProduct라는 ArrayList에(상품목록에) 
+	데이터(상품)을 추가한다.
+	*/
+	public void addProduct(Product product) {
+		listOfProducts.add(product);
 	}
 }

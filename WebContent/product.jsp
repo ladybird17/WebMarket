@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="dto.Product" %>
-<jsp:useBean id="productDAO" class="dao.ProductRepository" scope="session"/>
+<%@ page import="dao.ProductRepository" %>
+<!-- 기존 자바빈즈 사용부분을 디렉티브 태그 사용 방식으로 변경. -->
+<%-- <jsp:useBean id="productDAO" class="dao.ProductRepository" scope="session"/> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,10 +26,18 @@
 	String id = request.getParameter("id");
 	
 	/*
-	매개변수로 입력한 상품id와 동일한 정보가 있을 경우
-	반환함
+	ProductRepository 클래스타입의 변수 dao에
+	ProductRepositofy 클래스 내부에서 생성된 객체를 대입
 	*/
-	Product product = productDAO.getProductById(id);
+	ProductRepository dao = ProductRepository.getInstance();
+	Product product = dao.getProductById(id);
+	
+	
+	/* 
+	매개변수로 입력한 상품id와 
+	동일한 정보가 있을 경우반환함
+	
+	Product product = productDAO.getProductById(id); */
 	%>
 	<div class = "container">
 		<div class="row">
