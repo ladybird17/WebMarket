@@ -12,7 +12,10 @@
 <meta charset="UTF-8">
 <title>상품 목록</title>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 	<jsp:include page="menu.jsp"/>
@@ -29,18 +32,17 @@
 		<div class="row" align="center">
 			<%
 			for(int i=0; i<listOfProducts.size(); i++){
-				//listOfProduct의 i번쨰 데이터를 가져와서 Product 타입의 변수 product에 저장후 출력
+				//listOfProduct의 i번째 데이터를 가져와서 Product 타입의 변수 product에 저장후 출력
 				Product product = listOfProducts.get(i);
 			%>
 			<div class="col-md-4">
 				<!-- 이미지 출력 -->
-				<img src="./resource/images/<%= product.getFilename() %>" style="width:100%">
+				<img src="./resource/images/<%= product.getFilename() %>" style="width:100%;">
 				<h3><%=product.getPname() %></h3>
-				<p><%=product.getDescription() %></p>
-				<p><%=product.getUnitPrice() %>원</p>
+				<h3><%=product.getDescription() %></h3>
+				<h3><%=product.getUnitPrice() %>원</h3>
 				<!-- product.jsp파일로 화면이 이동하며, id에 상품아이디가 담겨간다. -->
-				<p> <a href="./product.jsp?id=<%=product.getProductId() %>"
-				class="btn btn-secondary" role="button">상세정보 &raquo;</a>
+				<h3> <a href="./product.jsp?id=<%=product.getProductId() %>" class="btn btn-secondary" role="button">상세정보 &raquo;</a></h3>
 			</div>
 			<%
 			}

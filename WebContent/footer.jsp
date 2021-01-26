@@ -1,4 +1,4 @@
 <footer class="container">
 	<hr>
-	<p>&copy; BookMarket</p>
+	<p>&copy; YJWebMarket</p>
 </footer>

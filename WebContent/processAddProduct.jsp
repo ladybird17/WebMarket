@@ -1,6 +1,6 @@
 <!-- 신규 상품 등록 처리 페이지 p206 -->
 
-<!-- 7장에서 추가 -->
+<!-- 파일 업로드용 라이브러리 추가 -->
 <%@ page import="java.io.*" %>
 <%@ page import="java.util.*" %>
 <%@ page import="com.oreilly.servlet.*" %>
@@ -8,7 +8,8 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="dto.Product, dao.ProductRepository" %>
+<%@ page import="dto.Product" %>
+<%@ page import="dao.ProductRepository" %>
 <!--
 dao : Data Access Object의 줄임말로서, 데이터를 조작하기 위한 기능을
 전담하기 위해 만들어진 오브젝트
@@ -91,8 +92,9 @@ ProductRepository 클래스 내부에서 생성된 객체를 대입
 */
 ProductRepository dao = ProductRepository.getInstance();
 
-/* Product 클래스 타입의 객체 생성 */
+/* Product 클래스 타입의 객체 newProduct 생성 */
 Product newProduct = new Product();
+
 newProduct.setProductId(productId);
 newProduct.setPname(name);
 newProduct.setUnitPrice(price);
@@ -101,6 +103,7 @@ newProduct.setManufacturer(manufacturer);
 newProduct.setCategory(category);
 newProduct.setUnitsInstock(stock);
 newProduct.setCondition(condition);
+
 newProduct.setFilename(fileName);
 
 /*

@@ -25,13 +25,21 @@
 		return false;
 	}
 	
-	if(unitPrice.value<0){
+	if(unitPrice.value < 0){
 		alert("[가격]\n음수는 입력할 수 없습니다.");
 		unitPrice.select();
 		unitPrice.focus();
 		return false;
 	}
-	else if(!check(\^d+(?:[.]?[\d]?[\d])?$/, unitPrice, "[가격]\n소수점 둘째 자리까지만 입력하세요")){
+	else if(!check(/^\d+(?:[.]?[\d]?[\d])?$/, unitPrice, "[가격]\n소수점 둘째 자리까지만 입력하세요")){
+		return false;
+	}
+	
+	//재고 수 체크
+	if(isNaN(unitsInstock.value)){
+		alert("[재고 수]\n숫자만 입력하세요");
+		unitsInstock.select();
+		unitsInstock.focus();
 		return false;
 	}
 	
