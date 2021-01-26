@@ -21,13 +21,6 @@ public class ProductRepository {
 			사용하는 방법 */
 	private static ProductRepository instance = new ProductRepository();
 	
-	/*
-	싱글톤 방식으로 생성된 ProductRepository의
-	객체 instance를 공유. static으로 해줘야함 */
-	public static ProductRepository getInstance() {
-		return instance;
-	}
-	
 	public ProductRepository() {
 		Product phone = new Product("P1234","iPhone 6s",800000);
 		phone.setDescription("4.7-inch, 1334X750 Renina HD display, 8-megapixel iSight Camera");
@@ -35,6 +28,7 @@ public class ProductRepository {
 		phone.setManufacturer("Apple");
 		phone.setUnitsInstock(1000);
 		phone.setCondition("New");
+		phone.setFilename("P1234.png");//7장에서 추가한 파일이름 설정
 		
 		Product notebook = new Product("P1235","LG PC 그램",1500000);
 		notebook.setDescription("13.3-inch, IPS LED display, 5rd Generation Intel Core processors");
@@ -42,6 +36,7 @@ public class ProductRepository {
 		notebook.setManufacturer("LG");
 		notebook.setUnitsInstock(1000);
 		notebook.setCondition("Refurbished");
+		notebook.setFilename("P1235.png");
 
 		Product tablet = new Product("P1236","Galaxy Tab S",900000);
 		tablet.setDescription("212.8*125.6*6mm, Super AMOLED display, Octa-Core processor");
@@ -49,6 +44,7 @@ public class ProductRepository {
 		tablet.setManufacturer("Samsung");
 		tablet.setUnitsInstock(1000);
 		tablet.setCondition("Old");
+		tablet.setFilename("P1236.png");
 		
 		listOfProducts.add(phone);
 		listOfProducts.add(notebook);
@@ -83,10 +79,19 @@ public class ProductRepository {
 	}
 	
 	/*
+	싱글톤 방식으로 생성된 ProductRepository의
+	객체 instance를 공유. static으로 해줘야함 */
+	public static ProductRepository getInstance() {
+		return instance;
+	}
+	
+	/*
 	listOfProduct라는 ArrayList에(상품목록에) 
 	데이터(상품)을 추가한다.
 	*/
 	public void addProduct(Product product) {
 		listOfProducts.add(product);
 	}
+	
+	
 }

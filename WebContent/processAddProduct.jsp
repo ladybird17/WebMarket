@@ -1,5 +1,11 @@
 <!-- 신규 상품 등록 처리 페이지 p206 -->
 
+<!-- 7장에서 추가 -->
+<%@ page import="java.io.*" %>
+<%@ page import="java.util.*" %>
+<%@ page import="com.oreilly.servlet.*" %>
+<%@ page import="com.oreilly.servlet.multipart.*" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="dto.Product, dao.ProductRepository" %>
@@ -10,21 +16,44 @@ dto : Data Transfer Object의 줄임말로서 계층간의 데이터를 교환�
 DB와 자바의 데이터타입은 실제로는 같지 않음
 자바에서 DB의 데이터를 사용하기 위해 데이터 변환을 해주는 클래스의 객체
 -->
+
+
 <%
 request.setCharacterEncoding("UTF-8");
+
+//7장에서 추가
+String filename = "";
+String realFolder = "C:\\java102\\workspace-sts4\\WebMarket\\WebContent\\resource\\images"; //웹애플리케이션 상의 절대경로
+int maxSize = 5*1024*1024; //최대 업로드될 파일의 크기 5MB
+String encType = "utf-8";//인코딩 유형
+
+MultipartRequest multi = new MultipartRequest(request, realFolder, maxSize, encType, new DefaultFileRenamePolicy());
+
+/*
+MultipartRequest를 사용하여
+넘겨받은 데이터를 하나씩 꺼냄
+*/
+String productId = multi.getParameter("productId");
+String name = multi.getParameter("name");
+String unitPrice = multi.getParameter("unitPrice");
+String description = multi.getParameter("description");
+String manufacturer = multi.getParameter("manufacturer");
+String category = multi.getParameter("category");
+String unitsInstock = multi.getParameter("unitsInstock");
+String condition = multi.getParameter("condition");
 
 /*
 request내장객체를 사용하여
 넘겨받은 데이터를 하나씩 꺼냄
 */
-String productId = request.getParameter("productId");
+/* String productId = request.getParameter("productId");
 String name = request.getParameter("name");
 String unitPrice = request.getParameter("unitPrice");
 String description = request.getParameter("description");
 String manufacturer = request.getParameter("manufacturer");
 String category = request.getParameter("category");
 String unitsInstock = request.getParameter("unitsInstock");
-String condition = request.getParameter("condition");
+String condition = request.getParameter("condition"); */
 
 /*
 넘겨받은 unitPrice가 문자열로 되어있으며,
@@ -51,6 +80,11 @@ else{
 	stock = Long.valueOf(unitsInstock);
 }
 
+//MultipartRequest에 저장된 첨부 파일에 대한 정보 읽어옴
+Enumeration files = multi.getFileNames();
+String fname = (String)files.nextElement();
+String fileName = multi.getFilesystemName(fname);
+
 /*
 ProductRepository 클래스 타입의 변수 dao에 싱글톤 방식으로
 ProductRepository 클래스 내부에서 생성된 객체를 대입
@@ -67,6 +101,7 @@ newProduct.setManufacturer(manufacturer);
 newProduct.setCategory(category);
 newProduct.setUnitsInstock(stock);
 newProduct.setCondition(condition);
+newProduct.setFilename(fileName);
 
 /*
 Product 클래스 타입의 데이터를 

@@ -23,7 +23,16 @@ public class Product implements Serializable {
 	private String category;	//분류
 	private long unitsInstock;	//재고 수
 	private String condition;	//상품 상태
+	private String filename;	//파일 이름(7장에서 새로추가함)
 	
+	public String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+
 	public Product() {
 		super();
 	}

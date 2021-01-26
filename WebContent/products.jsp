@@ -33,6 +33,8 @@
 				Product product = listOfProducts.get(i);
 			%>
 			<div class="col-md-4">
+				<!-- 이미지 출력 -->
+				<img src="./resource/images/<%= product.getFilename() %>" style="width:100%">
 				<h3><%=product.getPname() %></h3>
 				<p><%=product.getDescription() %></p>
 				<p><%=product.getUnitPrice() %>원</p>
